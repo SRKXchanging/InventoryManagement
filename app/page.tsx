@@ -340,7 +340,7 @@ export default function InventoryDashboard() {
           <div>
             <h1 className="brand-title">Inventory Tracker</h1>
             <p className="brand-subtitle">
-              Real-time Stock Management with Local SQLite Persistence
+              Real-time Stock Management Tracker
             </p>
           </div>
         </div>
@@ -432,9 +432,8 @@ export default function InventoryDashboard() {
                 name="name"
                 type="text"
                 placeholder="e.g. Mechanical Keyboard"
-                className={`input-field ${
-                  formErrors.name ? "input-error" : ""
-                }`}
+                className={`input-field ${formErrors.name ? "input-error" : ""
+                  }`}
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
@@ -502,9 +501,8 @@ export default function InventoryDashboard() {
                   type="number"
                   min="0"
                   step="1"
-                  className={`input-field stepper-input ${
-                    formErrors.quantity ? "input-error" : ""
-                  }`}
+                  className={`input-field stepper-input ${formErrors.quantity ? "input-error" : ""
+                    }`}
                   value={quantity}
                   onChange={(e) => {
                     setQuantity(e.target.value);
@@ -796,9 +794,8 @@ export default function InventoryDashboard() {
                   <input
                     id="edit-name"
                     type="text"
-                    className={`input-field ${
-                      editErrors.name ? "input-error" : ""
-                    }`}
+                    className={`input-field ${editErrors.name ? "input-error" : ""
+                      }`}
                     value={editName}
                     onChange={(e) => {
                       setEditName(e.target.value);
@@ -859,9 +856,8 @@ export default function InventoryDashboard() {
                       type="number"
                       min="0"
                       step="1"
-                      className={`input-field stepper-input ${
-                        editErrors.quantity ? "input-error" : ""
-                      }`}
+                      className={`input-field stepper-input ${editErrors.quantity ? "input-error" : ""
+                        }`}
                       value={editQuantity}
                       onChange={(e) => {
                         setEditQuantity(e.target.value);

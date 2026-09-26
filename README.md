@@ -2,7 +2,7 @@
 
 A clean, modern, and responsive Inventory Tracker built with **Next.js (App Router)**, **TypeScript**, and **Prisma + SQLite**.
 
-Designed for live-demos and YouTube tutorials: clear scope, predictable outcomes, zero unnecessary abstractions, and local SQLite data persistence.
+Designed for live-demos : clear scope, predictable outcomes, zero unnecessary abstractions, and local SQLite data persistence.
 
 ---
 

@@ -37,3 +37,11 @@ prisma/*.db
 prisma/*.db-journal
 dev.db
 dev.db-journal
+
+# playwright
+/playwright-report
+/playwright-videos
+/.playwright-mcp/*.*
+
+# buildSummary
+./buildSummary/*.*
