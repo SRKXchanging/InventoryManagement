@@ -87,10 +87,4 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to interact 
 
 ---
 
-## Definition of Done Verification
 
-- [x] **Add a product**: Enter Name, SKU, and Quantity; click "Add Product".
-- [x] **See it in the table**: Product immediately appears in the inventory table.
-- [x] **Change its quantity**: Use the `-` / `+` quick buttons or click the Edit button to modify values.
-- [x] **Delete it**: Click the Trash icon and confirm deletion in the modal dialog.
-- [x] **Persistence**: Refresh the browser page and observe all data remains intact in SQLite.
