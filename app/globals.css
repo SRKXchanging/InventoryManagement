@@ -810,3 +810,14 @@ body {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* Hide Next.js dev tools floating button */
+nextjs-portal,
+[data-nextjs-dev-tools-button],
+button[aria-label="Open Next.js Dev Tools"],
+div[data-nextjs-toast-wrapper] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
