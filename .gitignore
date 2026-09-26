@@ -41,7 +41,7 @@ dev.db-journal
 # playwright
 /playwright-report
 /playwright-videos
-/.playwright-mcp/*.*
+.playwright-mcp/
 
 # buildSummary
-./buildSummary/*.*
+buildSummary/
