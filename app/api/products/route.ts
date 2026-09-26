@@ -47,11 +47,20 @@ export async function POST(request: NextRequest) {
     if (
       quantity === undefined ||
       quantity === null ||
-      !Number.isInteger(parsedQty) ||
-      parsedQty < 0
+      !Number.isInteger(parsedQty)
     ) {
       return NextResponse.json(
-        { error: "Quantity must be an integer of 0 or greater" },
+        { error: "Quantity must be a valid integer" },
+        { status: 400 }
+      );
+    }
+
+    if (parsedQty <= 0) {
+      return NextResponse.json(
+        {
+          error:
+            "Initial quantity cannot be 0. Please enter at least 1 unit.",
+        },
         { status: 400 }
       );
     }

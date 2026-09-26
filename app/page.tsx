@@ -37,7 +37,7 @@ export default function InventoryDashboard() {
   // New product form state
   const [name, setName] = useState("");
   const [sku, setSku] = useState("");
-  const [quantity, setQuantity] = useState<number | string>(0);
+  const [quantity, setQuantity] = useState<number | string>(1);
   const [formErrors, setFormErrors] = useState<{
     name?: string;
     quantity?: string;
@@ -131,6 +131,8 @@ export default function InventoryDashboard() {
       const parsed = Number(quantity);
       if (!Number.isInteger(parsed)) {
         errors.quantity = "Quantity must be a valid integer";
+      } else if (parsed === 0) {
+        errors.quantity = "Initial quantity cannot be 0. Please enter at least 1 unit.";
       } else if (parsed < 0) {
         errors.quantity = "Quantity cannot be negative";
       }
@@ -168,7 +170,7 @@ export default function InventoryDashboard() {
       // Reset form
       setName("");
       setSku("");
-      setQuantity(0);
+      setQuantity(1);
       setFormErrors({});
       // Refresh list
       fetchProducts(searchQuery);
@@ -482,7 +484,7 @@ export default function InventoryDashboard() {
                   aria-label="Decrease quantity"
                   onClick={() => {
                     const current = Number(quantity) || 0;
-                    if (current > 0) {
+                    if (current > 1) {
                       setQuantity(current - 1);
                       if (formErrors.quantity) {
                         setFormErrors((prev) => ({
@@ -490,6 +492,13 @@ export default function InventoryDashboard() {
                           quantity: undefined,
                         }));
                       }
+                    } else {
+                      setQuantity(0);
+                      setFormErrors((prev) => ({
+                        ...prev,
+                        quantity:
+                          "Initial quantity cannot be 0. Please enter at least 1 unit.",
+                      }));
                     }
                   }}
                 >
@@ -499,18 +508,43 @@ export default function InventoryDashboard() {
                   id="product-quantity"
                   name="quantity"
                   type="number"
-                  min="0"
+                  min="1"
                   step="1"
                   className={`input-field stepper-input ${formErrors.quantity ? "input-error" : ""
                     }`}
                   value={quantity}
                   onChange={(e) => {
-                    setQuantity(e.target.value);
-                    if (formErrors.quantity) {
+                    const val = e.target.value;
+                    setQuantity(val);
+                    if (val === "" || val === null || val === undefined) {
                       setFormErrors((prev) => ({
                         ...prev,
-                        quantity: undefined,
+                        quantity: "Quantity must be an integer",
                       }));
+                    } else {
+                      const parsed = Number(val);
+                      if (!Number.isInteger(parsed)) {
+                        setFormErrors((prev) => ({
+                          ...prev,
+                          quantity: "Quantity must be a valid integer",
+                        }));
+                      } else if (parsed === 0) {
+                        setFormErrors((prev) => ({
+                          ...prev,
+                          quantity:
+                            "Initial quantity cannot be 0. Please enter at least 1 unit.",
+                        }));
+                      } else if (parsed < 0) {
+                        setFormErrors((prev) => ({
+                          ...prev,
+                          quantity: "Quantity cannot be negative",
+                        }));
+                      } else {
+                        setFormErrors((prev) => ({
+                          ...prev,
+                          quantity: undefined,
+                        }));
+                      }
                     }
                   }}
                 />
@@ -521,7 +555,8 @@ export default function InventoryDashboard() {
                   aria-label="Increase quantity"
                   onClick={() => {
                     const current = Number(quantity) || 0;
-                    setQuantity(current + 1);
+                    const nextVal = current < 1 ? 1 : current + 1;
+                    setQuantity(nextVal);
                     if (formErrors.quantity) {
                       setFormErrors((prev) => ({
                         ...prev,
@@ -532,6 +567,9 @@ export default function InventoryDashboard() {
                 >
                   <Plus size={16} />
                 </button>
+              </div>
+              <div className="field-help">
+                Minimum 1 unit required when adding new inventory
               </div>
               {formErrors.quantity && (
                 <div className="error-message" id="error-product-quantity">
