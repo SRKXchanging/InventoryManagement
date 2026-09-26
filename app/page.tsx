@@ -346,11 +346,6 @@ export default function InventoryDashboard() {
             </p>
           </div>
         </div>
-
-        <div className="status-badge" id="db-status-badge">
-          <span className="pulse-dot" />
-          <span>SQLite Database Connected</span>
-        </div>
       </header>
 
       {/* Toast Alert */}
